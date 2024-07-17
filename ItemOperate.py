@@ -1,5 +1,6 @@
 #coding:utf-8
 import wx
+import wx.adv
 import os
 from dataList import DataHandle
 from useValidator import InputValidator
@@ -97,14 +98,14 @@ class AddProgramDialog(wx.Dialog):
 
 
     def OnChoiceOperator(self,event):
-        print u"选择的操作符：",self.operatorBox.GetValue()
+        print(u"选择的操作符：",self.operatorBox.GetValue())
         #self.operatorBox = self.operatorBox.GetValue()
 
     ##选择可执行文件对话框事件函数
     def OnExeSelectFile(self,event):
         wildcard = "Executable file (*.exe)|*.exe"
                     #"Batch program (*.bat)|*.bat"
-        dialog = wx.FileDialog(self, u"选择文件", os.getcwd(), "", wildcard, wx.OPEN)
+        dialog = wx.FileDialog(self, u"选择文件", os.getcwd(), "", wildcard, wx.FC_OPEN)
         if dialog.ShowModal() == wx.ID_OK:
             fpath =  dialog.GetPath()
             self.fpath_t.SetValue(fpath)
@@ -130,7 +131,7 @@ class AddProgramDialog(wx.Dialog):
         self.note = self.note_t.GetValue()
         self.monitor = self.monitor_t.GetValue()
         self.operator = self.operatorBox.GetValue()
-        print u"得到的操作符：",self.operatorBox.GetValue()
+        print(u"得到的操作符：",self.operatorBox.GetValue())
         LoadLog.LogMsg(gen.logger.info,u"返回对话框输入的数据")
         return self.name,self.programe,self.logfile,self.monitor,self.operator,self.processNum,self.runAs,self.note
 

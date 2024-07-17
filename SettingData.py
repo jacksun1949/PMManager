@@ -1,7 +1,7 @@
 #coding:utf-8
 
-import ConfigParser
-from ConfigParser import SafeConfigParser
+import configparser
+from configparser import SafeConfigParser
 config = SafeConfigParser()
 
 class HandleSetting(object):
@@ -52,10 +52,10 @@ class HandleSetting(object):
 if __name__ == "__main__":
     f = HandleSetting("setting.ini")
     iniDict =  f.ReadConfFile()
-    print iniDict["base"]["startup"]
-    print iniDict["base"]["autoupdate"]
-    print iniDict["log"]["log_size"]
-    print iniDict
+    print(iniDict["base"]["startup"])
+    print(iniDict["base"]["autoupdate"])
+    print(iniDict["log"]["log_size"])
+    print(iniDict)
 
     f2 = HandleSetting("setting2.ini",iniDict)
     f2.WriteConfFile()

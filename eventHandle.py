@@ -383,7 +383,7 @@ class EventSettingMenuAndLog(object):
         gen.LOG_MAX_BYTES = gen.CONF_DICT["log"]["log_size"] * 1024 * 1024
         gen.BACKUP_COUNT = gen.CONF_DICT["log"]["log_leave"]
         gen.MSG_MAX = gen.CONF_DICT["log"]["msg_max"]
-        print type(gen.MSG_MAX)
+        print(type(gen.MSG_MAX))
         gen.FILE_LOG_LEVEL =  gen.CONF_DICT["log"]["log_level"]
         gen.level = gen.LEVELS.get(gen.FILE_LOG_LEVEL,logging.NOTSET)
         gen.CONSOLE_LOG_LEVEL = gen.CONF_DICT["log"]["console_level"]

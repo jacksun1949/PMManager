@@ -189,7 +189,7 @@ class SettingPanel(wx.Listbook):
 
         about_s = wx.StaticText(win,-1,u"日志配置")
         line = wx.StaticLine(win)
-        print "self.enable_console_show:",self.enable_console_show
+        print("self.enable_console_show:",self.enable_console_show)
         self.enableconsole_c = wx.CheckBox(win, label=u"启用控制台信息输出 (依赖于文件日志)",id=gen.ID_CONSOLE_SHOW)
         self.enablelog_c = wx.CheckBox(win, label=u"启用文件日志输出",id=gen.ID_LOG_SHOW)
 
@@ -310,7 +310,7 @@ class SettingPanel(wx.Listbook):
                    "All files (*.*)|*.*"
             ctrltext = self.logfile_t
 
-        OpenDlg = wx.FileDialog(self, u"选择文件",os.getcwd(), "", wildcard, wx.OPEN)
+        OpenDlg = wx.FileDialog(self, u"选择文件",os.getcwd(), "", wildcard, wx.FC_OPEN)
         if OpenDlg.ShowModal() == wx.ID_OK:
             ctrltext.SetValue(OpenDlg.GetPath())
             LoadLog.LogMsg(gen.logger.info,u"打开文件对话框所更换的文件: %s" % OpenDlg.GetPath())
@@ -519,10 +519,10 @@ class settingDlg(wx.Dialog):
         vsizer.Add(hsizer,1,wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10)
 
         hsizer2 = wx.BoxSizer(wx.HORIZONTAL)
-        hsizer2.Add(self.OKBtn,0,wx.RIGHT|wx.ALIGN_RIGHT|wx.BOTTOM,border=10)
-        hsizer2.Add(self.CancelBtn,0,wx.RIGHT|wx.ALIGN_RIGHT|wx.BOTTOM,border=10)
+        hsizer2.Add(self.OKBtn,0,wx.RIGHT|wx.ALIGN_CENTER_VERTICAL |wx.BOTTOM,border=10)
+        hsizer2.Add(self.CancelBtn,0,wx.RIGHT|wx.ALIGN_CENTER_VERTICAL |wx.BOTTOM,border=10)
 
-        vsizer.Add(hsizer2,0,wx.ALIGN_RIGHT|wx.RIGHT|wx.TOP, border=10)
+        vsizer.Add(hsizer2,0,wx.ALIGN_CENTER_HORIZONTAL |wx.RIGHT|wx.TOP, border=10)
 
         #hsizer = wx.BoxSizer(wx.HORIZONTAL)
         # sizer.Add(self.OKBtn, flag=wx.LEFT|wx.BOTTOM, border=5)
@@ -541,15 +541,15 @@ if __name__ == "__main__":
             f = HandleSetting(gen.CONF_FILE)
             configdict = f.ReadConfFile()
         except:
-            print "default dict"
+            print("default dict")
             configdict = gen.DEFAULT_CONFIG_DICT
     else:
-        print "default dict"
+        print("default dict")
         configdict = gen.DEFAULT_CONFIG_DICT
 
     dlg = settingDlg(u"设置",configdict)
-    print os.path.realpath(__file__)
-    print os.path.relpath(__file__)
+    print(os.path.realpath(__file__))
+    print(os.path.relpath(__file__))
     dlg.Center()
     if dlg.ShowModal() == wx.ID_OK:
         newConfDict = dlg.SetUI.GenerateConfDict()
@@ -557,8 +557,8 @@ if __name__ == "__main__":
         f = HandleSetting(gen.CONF_FILE,newConfDict)
         f.WriteConfFile()
         gen.CONF_DICT = newConfDict
-        print type(gen.CONF_DICT["monitor"]["round_robin_scheduling"])
-        print gen.LOOP_TIME
-        print  type(gen.LOOP_TIME)
+        print(type(gen.CONF_DICT["monitor"]["round_robin_scheduling"]))
+        print(gen.LOOP_TIME)
+        print(type(gen.LOOP_TIME))
     dlg.Destroy()
     app.MainLoop()

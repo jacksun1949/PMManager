@@ -25,6 +25,8 @@ class ListObj(object):
 class DataHandle(object):
     def __init__(self,filename):
         self.filename = filename
+        self.list_data = None
+
     ##读数据操作
     def ReadData(self):
         try:
@@ -34,7 +36,7 @@ class DataHandle(object):
             LoadLog.LogMsg(gen.logger.info,u"读取数据文件，返回数据字典.")
             with codecs.open(self.filename,'r',"utf-8") as f:
                 try:
-                    self.pdata = json.loads(f.read(),"utf-8")
+                    self.pdata = json.loads(f.read())
                 except (TypeError, ValueError) as err:
                     self.pdata = None
         except:
@@ -219,4 +221,4 @@ class DataHandle(object):
 
 if __name__ == "__main__":
     a = DataHandle("json.txt")
-    print a.handleList()
+    print(a.handleList())

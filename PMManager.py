@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import wx
+import wx.adv
 import os
 #import wx.aui
 #import time
@@ -18,7 +19,7 @@ from  sysInformation import SysInfo
 from SettingData import HandleSetting
 from about import MyAboutBox
 
-class TaskBarIcon(wx.TaskBarIcon):
+class TaskBarIcon(wx.adv.TaskBarIcon):
 
     def __init__(self, frame):
         wx.TaskBarIcon.__init__(self)
@@ -109,6 +110,11 @@ class  MainFrame(wx.Frame):
         self.LoadData()
 
         self.LogButtonUI()
+
+        # 在添加到 sizer 之前检查并移除 nb
+        if self.nb.GetContainingSizer():
+            self.nb.GetContainingSizer().Detach(self.nb)
+
         p2Sizer.Add(self.nb, pos=(0,0),span=(5,4),flag=wx.LEFT|wx.TOP|wx.BOTTOM|wx.EXPAND, border=5)
         p2Sizer.Add(self.p2LogControl, pos=(0,4), span=(5,1),
                     flag=wx.RIGHT|wx.LEFT|wx.TOP|wx.BOTTOM|wx.ALIGN_RIGHT|wx.EXPAND, border=5)
@@ -126,7 +132,7 @@ class  MainFrame(wx.Frame):
         self.CallMonitor()
         self.CallSysInfoCPU()
         self.CallSysInfoMemory()
-        self.taskBarIcon = TaskBarIcon(self)
+        #self.taskBarIcon = TaskBarIcon(self)
 
         self.Bind(wx.EVT_CLOSE, self.OnHide)
         #self.Bind(wx.EVT_ICONIZE, self.OnHide)
@@ -348,8 +354,9 @@ class  MainFrame(wx.Frame):
         boxsizer.Add(sboxsizer,1,wx.EXPAND|wx.TOP,15)
         p2LogControl.SetSizerAndFit(boxsizer)
 
-        confObj = HandleSetting(gen.CONF_FILE)
-        print confObj.ReadSingleConf("log","enable_console_show")
+        confObj = HandleSetting(gen.CONF_FILE);
+        print(confObj.ReadSingleConf("log","enable_console_show"))
+
         if confObj.ReadSingleConf("log","enable_console_show") is True:
             MonitorButton.Disable()
         else:
@@ -359,7 +366,7 @@ class  MainFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.evt_log.OnViewLog,MonitorButton)
         self.Bind(wx.EVT_BUTTON, self.evt_log.OnStopLog,StopMButton)
         self.Bind(wx.EVT_BUTTON, self.evt_log.OnClearLog,RefreshButton)
-        self.Bind(wx.wx.EVT_COMBOBOX,self.evt_log.OnClearMax,self.IntervalBox)
+        self.Bind(wx.EVT_COMBOBOX,self.evt_log.OnClearMax,self.IntervalBox)
         #self.Bind(wx.EVT_TEXT,self.evt_log.OnClearMax,self.IntervalBox)
 
 class ProvPanel(wx.Panel):
@@ -479,13 +486,13 @@ class LogPage(wx.Panel):
         self.ConsoleText.SetValue("")
 
 
-class MySplashScreen(wx.SplashScreen):
+class MySplashScreen(wx.adv.SplashScreen):
 
     def __init__(self, parent=None):
         aBitmap = wx.Image(name = "Img/startup.jpg").ConvertToBitmap()
-        splashStyle = wx.SPLASH_CENTRE_ON_SCREEN | wx.SPLASH_TIMEOUT
+        splashStyle = wx.adv.SPLASH_CENTRE_ON_SCREEN | wx.adv.SPLASH_TIMEOUT
         splashDuration = gen.SPLASH_TIME
-        wx.SplashScreen.__init__(self, aBitmap, splashStyle,splashDuration, parent)
+        wx.adv.SplashScreen.__init__(self, aBitmap, splashStyle,splashDuration, parent)
         self.Bind(wx.EVT_CLOSE, self.OnExit)
         wx.Yield()
 
@@ -503,9 +510,9 @@ class MyApp(wx.App):
         ##要检测的实例
         self.instance = wx.SingleInstanceChecker(self.name)
         ##查看实例是否已经运行，如果已经运行则初始化失败退出
-        if self.instance.IsAnotherRunning():
-            wx.MessageBox(u"PMManager 进程监控管理器，已经在运行了！",u"提示")
-            return False
+        # if self.instance.IsAnotherRunning():
+        #     wx.MessageBox(u"PMManager 进程监控管理器，已经在运行了！",u"提示")
+        #     return False
         ##检测有没有数据文件，如果没有创建一个空白数据文件
         CheckDataFileExists(gen._filedata)
         MySplash = MySplashScreen()

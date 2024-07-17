@@ -1,6 +1,9 @@
 #coding:utf-8
 import wx
+import wx.adv
 import os
+
+import wx.core
 
 class InputValidator(wx.PyValidator):# 创建验证器子类
      def __init__(self,flag):
@@ -45,7 +48,7 @@ class InputValidator(wx.PyValidator):# 创建验证器子类
          #     wx.MessageBox(u"该项目的进程已经存在",u"错误",wx.OK | wx.ICON_ERROR)
 
          else:
-             textCtrl.SetBackgroundColour(wx.SystemSettings_GetColour(wx.SYS_COLOUR_WINDOW))
+             textCtrl.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))
              textCtrl.Refresh()
          return True
      def TransferToWindow(self):

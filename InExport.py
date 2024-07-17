@@ -107,7 +107,7 @@ class exportDialog(wx.Dialog):
                     #print u"###字典，kid 对应的项",pdata[kid]
                     newDataDict[kid] = pdata[kid]
             try:
-                print newDataDict
+                print(newDataDict)
                 exportObj = DataHandle(self.filepath)
                 exportObj.WriteData(newDataDict)
                 wx.MessageBox(u"数据文件成功导出！", u'信息', wx.OK|wx.ICON_INFORMATION)

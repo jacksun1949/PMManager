@@ -16,7 +16,7 @@ class SysInfo(object):
 
     def getMemorystate(self):
         if gen.MEMORY_MON is True:
-            phymem = psutil.phymem_usage()
+            phymem = psutil.virtual_memory()
             buffers = getattr(psutil, 'phymem_buffers', lambda: 0)()
             cached = getattr(psutil, 'cached_phymem', lambda: 0)()
             used = phymem.total - (phymem.free + buffers + cached)
