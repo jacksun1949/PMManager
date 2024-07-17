@@ -269,13 +269,13 @@ class  MainFrame(wx.Frame):
         stop_tmp = wx.Bitmap("img/prestart.png",wx.BITMAP_TYPE_ANY)
 
         ###添加工具栏标签
-        toolbar.AddLabelTool(wx.ID_ADD,u"添加项目",add_tmp,shortHelp=u"添加项目",longHelp=u"")
-        toolbar.AddLabelTool(wx.ID_DELETE,u"删除项目",del_tmp,shortHelp=u"删除项目",longHelp=u"")
-        toolbar.AddLabelTool(wx.ID_EDIT,u"编辑项目",edit_tmp,shortHelp=u"编辑项目",longHelp=u"")
+        toolbar.AddTool(wx.ID_ADD,u"添加项目",add_tmp,shortHelp=u"添加项目")
+        toolbar.AddTool(wx.ID_DELETE,u"删除项目",del_tmp,shortHelp=u"删除项目")
+        toolbar.AddTool(wx.ID_EDIT,u"编辑项目",edit_tmp,shortHelp=u"编辑项目")
         toolbar.AddSeparator()
-        toolbar.AddLabelTool(gen.ID_START,u"启动进程",start_tmp,shortHelp=u"启动进程",longHelp=u"")
-        toolbar.AddLabelTool(gen.ID_STOP,u"结束进程",restart_tmp,shortHelp=u"结束进程",longHelp=u"")
-        toolbar.AddLabelTool(gen.ID_RESTART,u"重启进程",stop_tmp,shortHelp=u"重启进程",longHelp=u"")
+        toolbar.AddTool(gen.ID_START,u"启动进程",start_tmp,shortHelp=u"启动进程")
+        toolbar.AddTool(gen.ID_STOP,u"结束进程",restart_tmp,shortHelp=u"结束进程")
+        toolbar.AddTool(gen.ID_RESTART,u"重启进程",stop_tmp,shortHelp=u"重启进程")
         ##分隔线
         toolbar.AddSeparator()
         toolbar.AddStretchableSpace()

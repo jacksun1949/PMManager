@@ -25,7 +25,7 @@ class SysInfo(object):
             str(int(used / 1024 / 1024)) + "M",
             str(int(phymem.total / 1024 / 1024)) + "M"
             )
-            gen.MEMORY = unicode(line)
+            gen.MEMORY = str(line)
         else:
             gen.MEMORY = ""
         wx.CallLater(gen.MEMORY_LOOP_TIME,self.getMemorystate)

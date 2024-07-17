@@ -144,7 +144,7 @@ class EditProgramDialog(AddProgramDialog):
     def SetDialogData(self,filename,item):
         ReadFromFile = DataHandle(filename)
         self.pdata = ReadFromFile.ReadData()
-        print self.pdata[str(item)]
+        print(self.pdata[str(item)])
         self.name = self.pdata[str(item)]["name"]
 
         # if os.path.abspath(self.pdata[str(item)]["programe"]) is not True:
