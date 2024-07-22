@@ -33,22 +33,17 @@ class MyAboutBox(wx.Dialog):
 cellpadding="0">
 <tr>
     <td align="center" bgcolor="#B7CCBE">
-    <h3>PMManager 进程监控管理器 v1.0</h3><br>
-    作者：赵子发(avyou)<br>
+    <h3>HCGuardian 进程监控管理器 v1.0</h3><br>
+    汇萃智能<br>
     </td>
 </tr>
 </table>
 
-<p>欢迎使用 <b>PMManager ！</b></p> <p>它是一个开源免费的进程监控管理软件，用于监控守护正在运行的进程，</br>
+<p>欢迎使用 <b>HCGuardian ！</b></p> <p>它是一个汇萃科技进程监控管理软件，用于监控守护正在运行的进程，</br>
   </p>
 <p>当发现监控中进程被意外关闭时可以自动开启。同时也可以启动，结束，重启进程。</p>
 <br>
 <p>当前版本：1.0 </p>
-<p>开发语言： python、wxpython </p>
-<p>发布地址：<a href="https://github.com/avyou/PMManager">https://github.com/avyou/PMManager</a></p>
-<p>版权：GPL </p>
-<p><font size="3">联系：avyou55@gmail.com</font></p>
-<p>2013-8，广州</p>
 </body>
 </html>
 '''

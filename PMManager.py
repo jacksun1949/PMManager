@@ -22,10 +22,10 @@ from about import MyAboutBox
 class TaskBarIcon(wx.adv.TaskBarIcon):
 
     def __init__(self, frame):
-        wx.TaskBarIcon.__init__(self)
+        wx.adv.TaskBarIcon.__init__(self)
         self.frame = frame
-        self.SetIcon(wx.Icon(name='icons/logo.ico', type=wx.BITMAP_TYPE_ICO), u'PMManager v1.0')
-        self.Bind(wx.EVT_TASKBAR_LEFT_DCLICK, self.OnTaskBarLeftDClick)
+        result = self.SetIcon(wx.Icon(name='icons/logo.ico', type=wx.BITMAP_TYPE_ICO), u'HCDuardian v1.0')
+        self.Bind(wx.adv.EVT_TASKBAR_LEFT_DCLICK, self.OnTaskBarLeftDClick)
         self.Bind(wx.EVT_MENU, self.OnShow, id=gen.ID_SHOW_WIN)
         self.Bind(wx.EVT_MENU, self.frame.OnAbout, id=wx.ID_ABOUT)
         self.Bind(wx.EVT_MENU, self.OnExit, id=wx.ID_EXIT)
@@ -132,10 +132,10 @@ class  MainFrame(wx.Frame):
         self.CallMonitor()
         self.CallSysInfoCPU()
         self.CallSysInfoMemory()
-        #self.taskBarIcon = TaskBarIcon(self)
+        self.taskBarIcon = TaskBarIcon(self)
 
         self.Bind(wx.EVT_CLOSE, self.OnHide)
-        #self.Bind(wx.EVT_ICONIZE, self.OnHide)
+        # self.Bind(wx.EVT_ICONIZE, self.OnHide)
 
 
     def OnHide(self,event):
@@ -499,7 +499,7 @@ class MySplashScreen(wx.adv.SplashScreen):
     def OnExit(self, evt):
         self.Hide()
         LogOutput.LogMain()
-        frame = MainFrame(u"PMManager v1.0 |  欢迎使用")
+        frame = MainFrame(u"HCDuardian v1.0 | 欢迎使用")
         frame.Show(True)
         evt.Skip()
 
