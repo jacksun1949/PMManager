@@ -1,4 +1,4 @@
-# HCGuardian##
+# HCGuardian
 =========
 
 
@@ -17,6 +17,7 @@
 ### 安装包制作：
 
 **使用cx_Freeze**
+
 cx_Freeze是另一个用于将Python程序转换为可执行文件的库。以下是使用cx_Freeze的基本步骤：
 
 1. 安装cx_Freeze：使用pip安装cx_Freeze：
