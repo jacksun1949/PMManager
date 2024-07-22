@@ -48,7 +48,7 @@ cellpadding="0">
 </html>
 '''
     def __init__(self, parent):
-        wx.Dialog.__init__(self, parent, -1, u'关于 PMManager v1.0',
+        wx.Dialog.__init__(self, parent, -1, u'关于 HCGuardian v1.0',
                            style=wx.DEFAULT_DIALOG_STYLE)
         html = HtmlWin(self)
         html.SetPage(self.text)

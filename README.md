@@ -28,7 +28,7 @@ cx_Freeze是另一个用于将Python程序转换为可执行文件的库。以�
         name="Your Program",
         version="1.0",
         description="Description of your program",
-        executables=[Executable("your_script.py")]
+        executables = [Executable("PMManager.py", base="win32gui", target_name="HCGuardian.exe", icon="icons\logo.ico")]
     )
     确保将“Your Program”和“Description of your program”替换为你的程序的名称和描述，并将“your_script.py”替换为你的Python脚本的文件名。
 

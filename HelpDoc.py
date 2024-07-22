@@ -7,7 +7,7 @@ import LogOutput as LoadLog
 class HtmlDocDlg(wx.Dialog):
     def __init__(self, parent):
         wx.Dialog.__init__(self, parent, -1, u'帮助文档',
-                           style=wx.DEFAULT_DIALOG_STYLE|wx.THICK_FRAME|wx.TAB_TRAVERSAL)
+                           style=wx.DEFAULT_DIALOG_STYLE|wx.RESIZE_BORDER|wx.TAB_TRAVERSAL)
         #panel = wx.Panel(self, -1)
         vsizer = wx.BoxSizer(wx.VERTICAL)
         htmldoc = wx.html.HtmlWindow(self, -1,size=(1000,768))
