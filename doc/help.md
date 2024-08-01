@@ -2,11 +2,11 @@
 
  
 
-版本： PMManager v1.0 
+版本： HCGuardian v1.0 
 
 一、程序基本结构
 
-打开PMManager 文本夹，
+打开HCGuardian 文本夹，
 
 
 ![Image text](https://github.com/avyou/PMManager/blob/master/doc/doc_img/s1.jpg)

@@ -32,8 +32,8 @@ class MyAboutBox(wx.Dialog):
 <table  width="100%", cellspacing="0"
 cellpadding="0">
 <tr>
-    <td align="center" bgcolor="#B7CCBE">
-    <h3>HCGuardian 进程监控管理器 v1.0</h3><br>
+    <td align="center" bgcolor="#66A0E4">
+    <h3>HCGuardian 进程监控管理器 v1.5</h3><br>
     汇萃智能<br>
     </td>
 </tr>
@@ -43,12 +43,12 @@ cellpadding="0">
   </p>
 <p>当发现监控中进程被意外关闭时可以自动开启。同时也可以启动，结束，重启进程。</p>
 <br>
-<p>当前版本：1.0 </p>
+<p>当前版本：1.5 </p>
 </body>
 </html>
 '''
     def __init__(self, parent):
-        wx.Dialog.__init__(self, parent, -1, u'关于 HCGuardian v1.0',
+        wx.Dialog.__init__(self, parent, -1, u'关于 HCGuardian v1.5',
                            style=wx.DEFAULT_DIALOG_STYLE)
         html = HtmlWin(self)
         html.SetPage(self.text)

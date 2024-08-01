@@ -83,7 +83,7 @@ CUR_PATH = os.path.split(__file__)[0]
 IsItemChanged = False
 IsRunStatusChanged = False
 LoadDefaultConf = False
-SPLASH_TIME = 5000
+SPLASH_TIME = 1000
 
 def getConfDict():
     import os

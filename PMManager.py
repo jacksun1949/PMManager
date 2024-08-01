@@ -24,7 +24,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def __init__(self, frame):
         wx.adv.TaskBarIcon.__init__(self)
         self.frame = frame
-        result = self.SetIcon(wx.Icon(name='icons/logo.ico', type=wx.BITMAP_TYPE_ICO), u'HCDuardian v1.0')
+        result = self.SetIcon(wx.Icon(name='icons/logo.ico', type=wx.BITMAP_TYPE_ICO), u'HCDuardian v1.5')
         self.Bind(wx.adv.EVT_TASKBAR_LEFT_DCLICK, self.OnTaskBarLeftDClick)
         self.Bind(wx.EVT_MENU, self.OnShow, id=gen.ID_SHOW_WIN)
         self.Bind(wx.EVT_MENU, self.frame.OnAbout, id=wx.ID_ABOUT)
@@ -190,7 +190,7 @@ class  MainFrame(wx.Frame):
         controlMenu.AppendSeparator()
         #controlMenu.Append(gen.ID_MONITOR, u'监控服务', '')
         #controlMenu.Append(gen.ID_MONITOR, u'取消监控', '')
-        aboutMenu.Append(wx.ID_HELP,u'查看帮助',u"查看帮助")
+        # aboutMenu.Append(wx.ID_HELP,u'查看帮助',u"查看帮助")
         aboutMenu.Append(wx.ID_ABOUT,u'关于',u"关于")
 
         menubar.Append(fileMenu, u'文件')
@@ -219,8 +219,6 @@ class  MainFrame(wx.Frame):
         self.Bind(wx.EVT_MENU,self.evt.OnOperationPro,id=gen.ID_START)
         self.Bind(wx.EVT_MENU,self.evt.OnOperationPro,id=gen.ID_STOP)
         self.Bind(wx.EVT_MENU,self.evt.OnOperationPro,id=gen.ID_RESTART)
-
-
 
         self.menu_evt = EventHandle()
 
@@ -252,12 +250,12 @@ class  MainFrame(wx.Frame):
         #                     wx.ClientDC(self))
         # info.SetCopyright(u'(C) 2013 赵子发(avyou)')
         # wx.AboutBox(info)
-############工具栏 ############################################
+############工具栏 ###########################################
     def ToolBarUI(self):
         LoadLog.LogMsg(gen.logger.info,u"加载工具栏")
         toolbar = self.CreateToolBar(style = wx.TB_HORIZONTAL|wx.TB_FLAT|wx.TB_TEXT)
         ## 定义一个工具栏的间隔距离
-        tsize = (56,32)
+        tsize = (48,48)
         toolbar.SetToolBitmapSize(tsize)
 
         #####定义工具栏的位图
@@ -269,13 +267,13 @@ class  MainFrame(wx.Frame):
         stop_tmp = wx.Bitmap("img/prestart.png",wx.BITMAP_TYPE_ANY)
 
         ###添加工具栏标签
-        toolbar.AddTool(wx.ID_ADD,u"添加项目",add_tmp,shortHelp=u"添加项目")
-        toolbar.AddTool(wx.ID_DELETE,u"删除项目",del_tmp,shortHelp=u"删除项目")
-        toolbar.AddTool(wx.ID_EDIT,u"编辑项目",edit_tmp,shortHelp=u"编辑项目")
+        toolbar.AddTool(wx.ID_ADD,u"添加",add_tmp,shortHelp=u"添加项目")
+        toolbar.AddTool(wx.ID_DELETE,u"删除",del_tmp,shortHelp=u"删除项目")
+        toolbar.AddTool(wx.ID_EDIT,u"编辑",edit_tmp,shortHelp=u"编辑项目")
         toolbar.AddSeparator()
-        toolbar.AddTool(gen.ID_START,u"启动进程",start_tmp,shortHelp=u"启动进程")
-        toolbar.AddTool(gen.ID_STOP,u"结束进程",restart_tmp,shortHelp=u"结束进程")
-        toolbar.AddTool(gen.ID_RESTART,u"重启进程",stop_tmp,shortHelp=u"重启进程")
+        toolbar.AddTool(gen.ID_START,u"启动",start_tmp,shortHelp=u"启动进程")
+        toolbar.AddTool(gen.ID_STOP,u"结束",restart_tmp,shortHelp=u"结束进程")
+        toolbar.AddTool(gen.ID_RESTART,u"重启",stop_tmp,shortHelp=u"重启进程")
         ##分隔线
         toolbar.AddSeparator()
         toolbar.AddStretchableSpace()
@@ -446,7 +444,7 @@ class CustomStatusBar(wx.StatusBar):
         self.sizeChanged=True
         #self.Bind(wx.EVT_SIZE,self.OnSize)
         #self.SetStatusText(u"状态栏测试",0)
-        self.SetStatusText("aaa",1)
+        self.SetStatusText("loading",1)
         # self.SetStatusText(gen.monProNum,1)
         #self.SetStatusText(gen.runProNum,2)
         self.timer=wx.PyTimer(self.Notify)
@@ -472,7 +470,7 @@ class LogPage(wx.Panel):
         wx.Panel.__init__(self, parent)
         boxsizer = wx.BoxSizer(wx.HORIZONTAL)
         self.ConsoleText = ConsoleText = wx.TextCtrl(self,-1, "", size=(-1,-1),style=wx.TE_MULTILINE)#|wx.TE_RICH2)
-        ConsoleText.SetBackgroundColour("light blue")
+        ConsoleText.SetBackgroundColour("#66A0E4")
         boxsizer.Add(ConsoleText,1,flag=wx.EXPAND)
 
         self.SetSizerAndFit(boxsizer)
@@ -489,7 +487,7 @@ class LogPage(wx.Panel):
 class MySplashScreen(wx.adv.SplashScreen):
 
     def __init__(self, parent=None):
-        aBitmap = wx.Image(name = "Img/startup.jpg").ConvertToBitmap()
+        aBitmap = wx.Image(name = "Img/startup.png", type = wx.BITMAP_TYPE_ANY).ConvertToBitmap()
         splashStyle = wx.adv.SPLASH_CENTRE_ON_SCREEN | wx.adv.SPLASH_TIMEOUT
         splashDuration = gen.SPLASH_TIME
         wx.adv.SplashScreen.__init__(self, aBitmap, splashStyle,splashDuration, parent)
@@ -499,8 +497,8 @@ class MySplashScreen(wx.adv.SplashScreen):
     def OnExit(self, evt):
         self.Hide()
         LogOutput.LogMain()
-        frame = MainFrame(u"HCDuardian v1.0 | 欢迎使用")
-        frame.Show(True)
+        frame = MainFrame(u"HCDuardian v1.5 | 欢迎使用")
+        frame.Show(False)
         evt.Skip()
 
 class MyApp(wx.App):
@@ -510,9 +508,9 @@ class MyApp(wx.App):
         ##要检测的实例
         self.instance = wx.SingleInstanceChecker(self.name)
         ##查看实例是否已经运行，如果已经运行则初始化失败退出
-        # if self.instance.IsAnotherRunning():
-        #     wx.MessageBox(u"PMManager 进程监控管理器，已经在运行了！",u"提示")
-        #     return False
+        if self.instance.IsAnotherRunning():
+            # wx.MessageBox(u"PMManager 进程监控管理器，已经在运行了！",u"提示")
+            return True
         ##检测有没有数据文件，如果没有创建一个空白数据文件
         CheckDataFileExists(gen._filedata)
         MySplash = MySplashScreen()
